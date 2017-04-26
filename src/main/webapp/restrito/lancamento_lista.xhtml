@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<h:form id="listagem">
+		<p:dataTable style="height: 200px" scrollable="false"  
+			var="lancamentos" value="#{lancamentoBean.lista}">
+			<p:column headerText="Data">
+				<h:outputText value="#{lancamentos.dataLancamento}" />
+			</p:column>
+			<p:column headerText="Inicio">
+				<h:outputText value="#{lancamentos.horaInicio}" />
+			</p:column>
+			<p:column headerText="Fim">
+				<h:outputText value="#{lancamentos.horaFim}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</ui:composition>
+</html>

@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+	<h:form id="edicao">
+		<h:messages />
+
+		<div class="ui-fluid">
+			<p:panelGrid columns="6" layout="grid"
+				styleClass="ui-panelgrid-blank">
+				<p:column>
+					<h:outputLabel value="Projeto" for="projeto" />
+					<p:autoComplete dropdown="true" converter="projetoConverter"
+						id="projeto" value="#{lancamentoBean.lancamento.projeto}"
+						completeMethod="#{lancamentoBean.completaProjeto}" var="projeto"
+						itemValue="#{projeto}" itemLabel="#{projeto.nome}" />
+				</p:column>
+				<p:column>
+					<h:outputLabel value="Atividade" for="atividade" />
+
+					<p:autoComplete dropdown="true" converter="atividadeConverter"
+						id="atividade" value="#{lancamentoBean.lancamento.atividade}"
+						completeMethod="#{lancamentoBean.completaAtividade}"
+						var="atividade" itemValue="#{atividade}"
+						itemLabel="#{atividade.descricao}" />
+
+
+				</p:column>
+				<p:column>
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+
+				</p:column>
+
+				<p:column>
+					<h:outputLabel value="Data" for="data" />
+					<p:calendar id="data" pattern="dd/MM/yyyy" mask="true"
+						value="#{lancamentoBean.lancamento.dataLancamento}" />
+				</p:column>
+				<p:column>
+					<h:outputLabel value="Início" for="horaInicio" />
+					<p:calendar id="horaInicio" pattern="HH:mm" timeOnly="true"
+						value="#{lancamentoBean.lancamento.horaInicio}" />
+				</p:column>
+				<p:column>
+					<h:outputLabel value="Fim" for="horaFim" />
+					<p:calendar id="horaFim" pattern="HH:mm" timeOnly="true"
+						value="#{lancamentoBean.lancamento.horaFim}" />
+				</p:column>
+			</p:panelGrid>
+			<p:commandButton value="Salvar" action="#{lancamentoBean.salvar}"
+				update="edicao, :listagem" />
+		</div>
+	</h:form>
+</ui:composition>
+</html>
