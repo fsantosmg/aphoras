@@ -3,8 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -27,12 +26,14 @@
 		</ui:insert>
 	</div>
 
-	<div class="corpo">
-		<div id="left">
-			<ui:insert name="left">Left Section</ui:insert>
-		</div>
-		<div id="conteudo" class="conteudo">
-			<ui:insert name="conteudo">Main Content</ui:insert>
+	<div class="ui-fluid">
+		<div class="corpo">
+			<div id="left">
+				<ui:insert name="left">Left Section</ui:insert>
+			</div>
+			<div id="conteudo" class="conteudo">
+				<ui:insert name="conteudo">Main Content</ui:insert>
+			</div>
 		</div>
 	</div>
 
