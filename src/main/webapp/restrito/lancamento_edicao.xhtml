@@ -8,7 +8,7 @@
 
 <ui:composition>
 	<h:form id="edicao">
-		<h:messages />
+		<p:messages showDetail="true" autoUpdate="true" closable="true" />
 
 		<div class="ui-fluid">
 			<p:panelGrid columns="6" layout="grid"
@@ -31,11 +31,7 @@
 
 
 				</p:column>
-				<p:column>
-					<h:outputLabel value="" />
-					<h:outputLabel value="" />
 
-				</p:column>
 
 				<p:column>
 					<h:outputLabel value="Data" for="data" />
@@ -47,14 +43,23 @@
 					<p:calendar id="horaInicio" pattern="HH:mm" timeOnly="true"
 						value="#{lancamentoBean.lancamento.horaInicio}" />
 				</p:column>
-				<p:column>
+				<p:column colspan="2">
 					<h:outputLabel value="Fim" for="horaFim" />
 					<p:calendar id="horaFim" pattern="HH:mm" timeOnly="true"
 						value="#{lancamentoBean.lancamento.horaFim}" />
 				</p:column>
+
+				<p:column>
+
+					<p:commandButton title="salvar" icon="fa fa-save Fs14 White" style="margin-top: 19px;"
+					action="#{lancamentoBean.salvar()}"
+						update="edicao, :listagem" />
+				</p:column>
 			</p:panelGrid>
-			<p:commandButton value="Salvar" action="#{lancamentoBean.salvar}"
-				update="edicao, :listagem" />
+
+			
+
+
 		</div>
 	</h:form>
 </ui:composition>

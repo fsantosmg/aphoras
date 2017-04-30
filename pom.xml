@@ -8,6 +8,35 @@
 	<packaging>war</packaging>
 	<build>
 		<finalName>aphoras</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.lesscss</groupId>
+				<artifactId>lesscss-maven-plugin</artifactId>
+				<version>1.7.0.1.1</version>
+				<executions>
+					<execution>
+						<id>layout</id>
+						<configuration>
+							<sourceDirectory>${project.basedir}/src/main/webapp/resources/less/layout</sourceDirectory>
+							<outputDirectory>${project.basedir}/src/main/webapp/resources/volt-layout/css</outputDirectory>
+						</configuration>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>theme</id>
+						<configuration>
+							<sourceDirectory>${project.basedir}/src/main/webapp/resources/less/theme</sourceDirectory>
+							<outputDirectory>${project.basedir}/src/main/webapp/resources/primefaces-volt</outputDirectory>
+						</configuration>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 	<properties>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -38,6 +67,11 @@
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.lesscss</groupId>
+			<artifactId>lesscss-maven-plugin</artifactId>
+			<version>1.7.0.1.1</version>
 		</dependency>
 
 
