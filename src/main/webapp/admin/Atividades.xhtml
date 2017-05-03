@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="subheader">
+        Page Header
+    </ui:define>
+
+	<ui:define name="content">
+
+		<div class="Container100">
+			<div class="Card TexAlCenter">
+				<h:form id="atividades">
+					<div>
+						<h:outputLabel value="Descrição" />
+						<h:inputText value="#{atividadeBean.atividade.descricao}" />
+					</div>
+
+					<div>
+						<h:outputLabel value="Departamentos" />
+
+						<h:selectManyListbox
+							value="#{atividadeBean.atividade.departamentos}"
+							converter="departamentoConverter">
+							<f:selectItems value="#{atividadeBean.departamentos}"
+								var="departamento" itemValue="#{departamento}"
+								itemLabel="#{departamento.nome}" />
+
+						</h:selectManyListbox>
+					</div>
+
+					<p:commandButton action="#{atividadeBean.Salvar}" value="Salvar"  update="atividades, :listagem"
+					/>
+				</h:form>
+				
+				<ui:include src="atividades_lista.xhtml" />
+				<br />
+				<br />
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

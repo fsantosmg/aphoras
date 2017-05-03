@@ -21,13 +21,19 @@ public class AtividadeDao {
 
 	}
 
-	public List<Atividade> listar() {
+	public List<Atividade> listarTodas() {
 		return manager.createQuery("select a from Atividade a", Atividade.class).getResultList();
 	}
 
 	public List<Atividade> buscarPorDescricao(String descricao) {
 		return manager.createQuery("FROM Atividade WHERE upper(descricao) like :descricao", Atividade.class)
 				.setParameter("descricao", descricao.toUpperCase() + "%").getResultList();
+	}
+
+	public List<Atividade> listar() {
+		String jpql = "select distinct(a) from Atividade a " + " join fetch a.departamentos";
+
+		return manager.createQuery(jpql, Atividade.class).getResultList();
 	}
 
 }

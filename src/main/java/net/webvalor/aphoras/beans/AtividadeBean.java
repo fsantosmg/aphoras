@@ -40,6 +40,10 @@ public class AtividadeBean {
 		return departamentoDao.listar();
 	}
 	
+	public List<Atividade> getAtividades(){
+		return atividadeDao.listar();
+	}
+	
 	
 
 }

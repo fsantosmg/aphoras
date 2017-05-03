@@ -31,8 +31,8 @@ public class Projeto implements Serializable {
 	private List<Lancamento> lancamentos;
 
 	@ManyToOne
-	@JoinColumn(name = "cliente_id", foreignKey = @ForeignKey(name = "FK_Clinete_Lancamento"))
-	private Clitente cliente;
+	@JoinColumn(name = "cliente_id", foreignKey = @ForeignKey(name = "FK_Cliente_Lancamento"))
+	private Cliente cliente;
 	
 	@Temporal(TemporalType.DATE)
 	private Calendar dataPrevista;
@@ -69,12 +69,37 @@ public class Projeto implements Serializable {
 		this.lancamentos = lancamentos;
 	}
 
-	public Projeto getCliente() {
+
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Projeto cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public Calendar getDataPrevista() {
+		return dataPrevista;
+	}
+
+	public void setDataPrevista(Calendar dataPrevista) {
+		this.dataPrevista = dataPrevista;
+	}
+
+	public Calendar getDataFinalizacao() {
+		return dataFinalizacao;
+	}
+
+	public void setDataFinalizacao(Calendar dataFinalizacao) {
+		this.dataFinalizacao = dataFinalizacao;
+	}
+
+	public List<Colaborador> getColaboradores() {
+		return colaboradores;
+	}
+
+	public void setColaboradores(List<Colaborador> colaboradores) {
+		this.colaboradores = colaboradores;
 	}
 
 	@Override

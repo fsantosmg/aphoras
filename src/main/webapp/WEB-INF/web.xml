@@ -57,6 +57,10 @@
 		<extension>svg#fontawesomeregular</extension>
 		<mime-type>image/svg+xml</mime-type>
 	</mime-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 
 
 

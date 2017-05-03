@@ -7,60 +7,61 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition>
+
+
 	<h:form id="edicao">
+
+		<h:outputStylesheet library="sistema" name="lancamento_edicao.css" />
 		<p:messages showDetail="true" autoUpdate="true" closable="true" />
 
 		<div class="ui-fluid">
 			<p:panelGrid columns="6" layout="grid"
-				styleClass="ui-panelgrid-blank">
-				<p:column>
-					<h:outputLabel value="Projeto" for="projeto" />
+				 columnClasses="coluna1, coluna2, coluna3, coluna3, coluna3, coluna3 ">
+
+				<p:column >
+					<p:outputLabel value="Projeto" for="projeto" />
 					<p:autoComplete dropdown="true" converter="projetoConverter"
 						id="projeto" value="#{lancamentoBean.lancamento.projeto}"
 						completeMethod="#{lancamentoBean.completaProjeto}" var="projeto"
 						itemValue="#{projeto}" itemLabel="#{projeto.nome}" />
+
 				</p:column>
+
 				<p:column>
-					<h:outputLabel value="Atividade" for="atividade" />
+					<p:outputLabel value="Atividade" for="atividade" />
 
 					<p:autoComplete dropdown="true" converter="atividadeConverter"
 						id="atividade" value="#{lancamentoBean.lancamento.atividade}"
 						completeMethod="#{lancamentoBean.completaAtividade}"
 						var="atividade" itemValue="#{atividade}"
 						itemLabel="#{atividade.descricao}" />
-
-
 				</p:column>
-
-
 				<p:column>
-					<h:outputLabel value="Data" for="data" />
-					<p:calendar id="data" pattern="dd/MM/yyyy" mask="true"
+					<p:outputLabel value="Data" for="data" />
+					<p:calendar id="data" pattern="dd/MM/yyyy" mask="true" size="10"
 						value="#{lancamentoBean.lancamento.dataLancamento}" />
 				</p:column>
+
 				<p:column>
-					<h:outputLabel value="Início" for="horaInicio" />
+					<p:outputLabel value="Início" for="horaInicio" />
 					<p:calendar id="horaInicio" pattern="HH:mm" timeOnly="true"
-						value="#{lancamentoBean.lancamento.horaInicio}" />
+						size="10" value="#{lancamentoBean.lancamento.horaInicio}" />
 				</p:column>
-				<p:column colspan="2">
-					<h:outputLabel value="Fim" for="horaFim" />
-					<p:calendar id="horaFim" pattern="HH:mm" timeOnly="true"
+				<p:column>
+
+					<p:outputLabel value="Fim" for="horaFim" size="10" />
+					<p:calendar id="horaFim" pattern="HH:mm" timeOnly="true" size="10"
 						value="#{lancamentoBean.lancamento.horaFim}" />
 				</p:column>
-
-				<p:column>
-
-					<p:commandButton title="salvar" icon="fa fa-save Fs14 White" style="margin-top: 19px;"
-					action="#{lancamentoBean.salvar()}"
-						update="edicao, :listagem" />
+				<p:column >
+					<p:outputLabel for="salvar" size="10" />
+					<p:commandButton title="salvar" icon="fa fa-save Fs14 White"
+						id="salvar" style="margin-top: 19px;"
+						action="#{lancamentoBean.salvar()}" update="edicao, :listagem" />
 				</p:column>
 			</p:panelGrid>
-
-			
-
-
 		</div>
 	</h:form>
+
 </ui:composition>
 </html>
