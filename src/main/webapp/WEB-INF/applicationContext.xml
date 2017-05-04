@@ -1,0 +1,58 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+	<http pattern="/javax.faces.resource/**" security="none" />
+	<http pattern="/WEB-INF/template/**" security="none" />
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/empty_page.xhtml" access="isAuthenticated()" />
+		<intercept-url pattern="/restrito/**" access="hasAnyRole('TI', 'USER')" />
+		<intercept-url pattern="/admin/**" access="hasAnyRole('TI')" />
+
+	</http>
+
+
+	<!-- <authentication-manager> <authentication-provider> <user-service> <user 
+		name="admin" password="admin" authorities="ADMIN" /> <user name="user" password="user" 
+		authorities="USER" /> </user-service> </authentication-provider> </authentication-manager> -->
+
+
+<authentication-manager id="authenticationManager">
+	<authentication-provider ref='AD-LdapProvider' />
+</authentication-manager>
+	<beans:bean id="contextSource"
+		class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
+		<beans:constructor-arg value="ldap://simatec.intranet:389" />
+		<beans:property name="userDn"
+			value="CN=users,OU=simatec,DC=intranet" />
+		<beans:property name="password" value="******" />
+	</beans:bean>
+	<beans:bean id="AD-LdapProvider"
+		class="org.springframework.security.ldap.authentication.LdapAuthenticationProvider">
+		<beans:constructor-arg>
+			<beans:bean
+				class="org.springframework.security.ldap.authentication.BindAuthenticator">
+				<beans:constructor-arg ref="contextSource" />
+				<beans:property name="userSearch">
+					<beans:bean id="userSearch"
+						class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch">
+						<beans:constructor-arg index="0"
+							value="DC=simatec,DC=intranet" />
+						<beans:constructor-arg index="1"
+							value="(&amp;(objectClass=user)(sAMAccountName={0}))" />
+						<beans:constructor-arg index="2" ref="contextSource" />
+						<beans:property name="searchSubtree" value="true" />
+					</beans:bean>
+				</beans:property>
+			</beans:bean>
+		</beans:constructor-arg>
+		
+	</beans:bean>
+
+</beans:beans>
+
+
